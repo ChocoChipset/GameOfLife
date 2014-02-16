@@ -32,6 +32,10 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
 - (void)viewDidLoad
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+  
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGesture:)];
+    tapGestureRecognizer.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
     
     self.cellularMatrix = [[CWYCelullarMatrix alloc] initWithWidth:(self.cellularView.bounds.size.width / CWYGridFactor) + 1
                                                             height:(self.cellularView.bounds.size.height / CWYGridFactor) + 1];
@@ -42,7 +46,15 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
     [super viewDidLoad];
 }
 
+
 #pragma mark - IBActions
+
+
+- (void)handleDoubleTapGesture:(UITapGestureRecognizer *)paramTapGestureRecognizer
+{
+    [self.cellularMatrix clearCurrentMatrix];
+    [self drawMatrix];
+}
 
 -(IBAction)handleAnimationButtonPress:(UIButton *)sender
 {
@@ -66,6 +78,7 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
 
 
 #pragma mark - Matrix
+
 
 -(void)displayNextGenerationOfMatrix
 {
@@ -135,7 +148,9 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Touch Handling
+
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {

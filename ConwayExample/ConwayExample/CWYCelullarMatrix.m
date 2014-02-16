@@ -11,7 +11,6 @@
 
 @interface CWYCelullarMatrix ()
 
-@property (nonatomic, assign) BOOL *currentMatrix;
 
 @property (nonatomic, assign) CGSize size;
 
@@ -42,6 +41,8 @@
     free(self.currentMatrix);
 }
 
+
+#pragma mark -
 
 - (NSUInteger)numberOfNeighboursForIndex:(NSUInteger)paramIndex
 {
@@ -137,6 +138,13 @@
     self.currentMatrix = nextMatrix;
 }
 
+-(void)clearCurrentMatrix
+{
+    memset(self.currentMatrix, 0, self.length);
+}
+
+#pragma mark - Calculations
+
 - (NSUInteger)vectorIndexFromPointX:(NSUInteger)paramX
                              pointY:(NSUInteger)paramY
 {
@@ -158,6 +166,9 @@
 {
     return self.size.width * self.size.height;
 }
+
+
+#pragma mark - Debug
 
 - (NSString *)description
 {

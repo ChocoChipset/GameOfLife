@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CWYCelullarMatrix : NSObject
-@property (nonatomic, assign, readonly) BOOL *currentMatrix;
+@property (nonatomic, assign) BOOL *currentMatrix;
 @property (nonatomic, assign, readonly) CGSize size;
 @property (nonatomic, readonly) NSUInteger length;
 
@@ -18,6 +18,8 @@
 
 
 - (void)nextGeneration;
+
+- (void)clearCurrentMatrix;
 
 - (CGPoint)pointFromVectorIndex:(NSUInteger)paramIndex;
 
