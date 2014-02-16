@@ -31,7 +31,6 @@
     if (self)
     {
         _currentMatrix = calloc(paramWidth * paramHeight, sizeof(BOOL));
-        _currentMatrix[319] = YES;
         _size = CGSizeMake(paramWidth, paramHeight);
     }
     
@@ -63,42 +62,42 @@
     
     if (!topEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x
                                                        pointY:point.y-1]];
     }
     if (!rightEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x+1
                                                        pointY:point.y]];
     }
     if (!bottomEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x
                                                        pointY:point.y+1]];
     }
     if (!leftEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x-1
                                                        pointY:point.y]];
     }
     if (!topEdge && !leftEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x-1
                                                        pointY:point.y-1]];
     }
     if (!topEdge && !rightEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x+1
                                                        pointY:point.y-1]];
     }
     if (!bottomEdge && !rightEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x+1
                                                        pointY:point.y+1]];
     }
     if (!bottomEdge && !leftEdge)
     {
-        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+        sum += self.currentMatrix[[self vectorIndexFromPointX:point.x-1
                                                        pointY:point.y+1]];
         
     }
@@ -155,6 +154,25 @@
     return CGPointMake(column, row);
 }
 
+- (NSString *)description
+{
+    NSMutableString *description = [NSMutableString string];
+    
+    for (int i=0; i<self.size.height; ++i)
+    {
+        for (int j=0; j<self.size.width; ++j)
+        {
+            NSUInteger index = [self vectorIndexFromPointX:i
+                                                    pointY:j];
+            
+            [description appendFormat:@"%d", self.currentMatrix[index]];
+        }
+        
+        [description appendString:@"\n"];
+    }
+    
+    return description;
+}
 
 @end
 
