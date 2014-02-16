@@ -108,10 +108,10 @@
 
 - (void)nextGeneration
 {
-    BOOL *nextMatrix = calloc(self.size.width * self.size.height, sizeof(BOOL));
+    BOOL *nextMatrix = calloc(self.length, sizeof(BOOL));
     
     for (NSUInteger traverseIndex = 0;
-         traverseIndex < self.size.width * self.size.height;
+         traverseIndex < self.length;
          ++traverseIndex)
     {
         if ([self numberOfNeighboursForIndex:traverseIndex] < 2 ||
@@ -152,6 +152,11 @@
     NSInteger column = paramIndex - (self.size.width * row);
     
     return CGPointMake(column, row);
+}
+
+- (NSUInteger)length
+{
+    return self.size.width * self.size.height;
 }
 
 - (NSString *)description

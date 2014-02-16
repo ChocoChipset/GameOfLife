@@ -11,6 +11,7 @@
 @interface CWYCelullarMatrix : NSObject
 @property (nonatomic, assign, readonly) BOOL *currentMatrix;
 @property (nonatomic, assign, readonly) CGSize size;
+@property (nonatomic, readonly) NSUInteger length;
 
 - (id)initWithWidth:(NSUInteger)paramWidth
             height:(NSUInteger)paramHeight;
