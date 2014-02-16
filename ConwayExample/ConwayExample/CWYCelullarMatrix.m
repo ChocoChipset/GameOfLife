@@ -38,6 +38,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    free(self.currentMatrix);
+}
+
 
 - (NSUInteger)numberOfNeighboursForIndex:(NSUInteger)paramIndex
 {
