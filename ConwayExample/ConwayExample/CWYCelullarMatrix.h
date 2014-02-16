@@ -20,4 +20,9 @@
 
 - (CGPoint)pointFromVectorIndex:(NSUInteger)paramIndex;
 
+- (NSUInteger)vectorIndexFromPointX:(NSUInteger)paramX
+                             pointY:(NSUInteger)paramY;
+
+
+
 @end

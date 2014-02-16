@@ -10,7 +10,10 @@
 #import "CWYCelullarMatrix.h"
 @interface CWYViewController ()
 
+@property (nonatomic, strong) IBOutlet UIView *cellularView;
 @property (nonatomic, strong) CWYCelullarMatrix *cellularMatrix;
+
+-(IBAction)nextGeneration:(id)sender;
 
 @end
 
@@ -18,13 +21,26 @@
 
 - (void)viewDidLoad
 {
-    self.cellularMatrix = [[CWYCelullarMatrix alloc] initWithWidth:self.view.bounds.size.width+1
-                                                            height:self.view.bounds.size.height+1];
+    self.cellularMatrix = [[CWYCelullarMatrix alloc] initWithWidth:self.cellularView.bounds.size.width+1
+                                                            height:self.cellularView.bounds.size.height+1];
     
     [self drawMatrix];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)nextGeneration:(id)sender
+{
+    NSLog(@"%@", self.cellularMatrix);
+    
+    [self.cellularView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    [self.cellularMatrix nextGeneration];
+
+    NSLog(@"%@", self.cellularMatrix);
+    
+    [self drawMatrix];
 }
 
 - (void)drawMatrix
@@ -40,8 +56,18 @@
             UIView *viewTest = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, 1, 1)];
             viewTest.backgroundColor = [UIColor redColor];
             
-            [self.view addSubview:viewTest];
-        }
+            [self.cellularView addSubview:viewTest];
+        }/*
+        else
+        {
+            CGPoint point = [self.cellularMatrix pointFromVectorIndex:matrixIndex];
+            
+            UIView *viewTest = [[UIView alloc] initWithFrame:CGRectMake(point.x, point.y, 1, 1)];
+            viewTest.backgroundColor = [UIColor blackColor];
+            
+            [self.cellularView addSubview:viewTest];
+            
+        }*/
     }
 }
 
@@ -50,5 +76,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Touches
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint touchedPoint =[touch locationInView:self.view];
+    
+    NSUInteger index = [self.cellularMatrix vectorIndexFromPointX:touchedPoint.x pointY:touchedPoint.y];
+    
+    self.cellularMatrix.currentMatrix[index] = YES;
+    
+    
+    NSLog(@"Point: %@", NSStringFromCGPoint(touchedPoint));
+    
+    [self drawMatrix];
+}
+
 
 @end
