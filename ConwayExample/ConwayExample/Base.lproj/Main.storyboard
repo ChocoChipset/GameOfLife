@@ -19,24 +19,31 @@
                             <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pvG-6B-uI9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.14509804546833038" green="0.19215688109397888" blue="0.27843138575553894" alpha="1" colorSpace="deviceRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhE-n9-bFt">
-                                <rect key="frame" x="20" y="496" width="280" height="54"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhE-n9-bFt">
+                                <rect key="frame" x="20" y="484" width="280" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.49411767721176147" green="0.54117649793624878" blue="0.63137257099151611" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Xuu-LB-wje"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Start Animation">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="nextGeneration:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ijQ-Ui-S52"/>
+                                    <action selector="handleAnimationButtonPress:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9a9-ZY-Vdh"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rLo-nP-VNP" firstAttribute="top" secondItem="GhE-n9-bFt" secondAttribute="bottom" constant="18" id="b1q-6N-Cds"/>
+                            <constraint firstItem="rLo-nP-VNP" firstAttribute="top" secondItem="GhE-n9-bFt" secondAttribute="bottom" constant="20" id="qRW-L1-s0g"/>
                         </constraints>
                     </view>
                     <connections>

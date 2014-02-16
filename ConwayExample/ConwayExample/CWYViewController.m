@@ -11,13 +11,19 @@
 #import "CWYCelullarMatrix.h"
 
 const NSUInteger CWYGridFactor = 8;
+const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
+
 
 @interface CWYViewController ()
+
+@property (nonatomic, weak) NSTimer *animationTimer;
 
 @property (nonatomic, strong) IBOutlet UIView *cellularView;
 @property (nonatomic, strong) CWYCelullarMatrix *cellularMatrix;
 
--(IBAction)nextGeneration:(id)sender;
+-(IBAction)handleAnimationButtonPress:(id)sender;
+
+-(void)displayNextGenerationOfMatrix;
 
 @end
 
@@ -25,21 +31,44 @@ const NSUInteger CWYGridFactor = 8;
 
 - (void)viewDidLoad
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     self.cellularMatrix = [[CWYCelullarMatrix alloc] initWithWidth:(self.cellularView.bounds.size.width / CWYGridFactor) + 1
                                                             height:(self.cellularView.bounds.size.height / CWYGridFactor) + 1];
     
     
     [self setupMatrix];
-    [self drawMatrix];
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
--(void)nextGeneration:(id)sender
+#pragma mark - IBActions
+
+-(IBAction)handleAnimationButtonPress:(UIButton *)sender
 {
-    [self.cellularView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
+    if (self.animationTimer)
+    {
+        [sender setTitle:@"Start Animation" forState:UIControlStateNormal];
+        [self.animationTimer invalidate];
+    }
+    else
+    {
+        [sender setTitle:@"Stop Animation" forState:UIControlStateNormal];
+        [self displayNextGenerationOfMatrix];
+        
+        self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:CWYAnimationTimeInterval
+                                                               target:self
+                                                             selector:@selector(displayNextGenerationOfMatrix)
+                                                             userInfo:Nil
+                                                              repeats:YES];
+    }
+}
+
+
+#pragma mark - Matrix
+
+-(void)displayNextGenerationOfMatrix
+{
     [self.cellularMatrix nextGeneration];
     
     [self drawMatrix];
@@ -61,7 +90,10 @@ const NSUInteger CWYGridFactor = 8;
                                  CWYGridFactor,
                                  CWYGridFactor);
         
-        layer.backgroundColor = [UIColor purpleColor].CGColor;
+        layer.backgroundColor = [UIColor colorWithRed:1.0
+                                                green:0.6
+                                                 blue:0.0
+                                                alpha:1.0].CGColor;
         layer.opacity = 0.0;
         layer.cornerRadius = CWYGridFactor / 2.0;
         [self.cellularView.layer addSublayer:layer];
@@ -79,7 +111,6 @@ const NSUInteger CWYGridFactor = 8;
          matrixIndex < self.cellularMatrix.length;
          ++matrixIndex)
     {
-        
         CALayer *layer = self.cellularView.layer.sublayers[matrixIndex];
         
         if (self.cellularMatrix.currentMatrix[matrixIndex] == YES)
@@ -104,7 +135,7 @@ const NSUInteger CWYGridFactor = 8;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Touches
+#pragma mark - Touch Handling
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
