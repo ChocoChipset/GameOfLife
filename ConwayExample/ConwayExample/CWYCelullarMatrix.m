@@ -8,30 +8,11 @@
 
 #import "CWYCelullarMatrix.h"
 
-@interface NSMutableArray (EmptySpaces)
-
--(void)addEmptySpaces:(NSUInteger)paramNumberOfSpaces;
-
-@end
-
-@implementation NSMutableArray (EmptySpaces)
-
--(void)addEmptySpaces:(NSUInteger)paramNumberOfSpaces
-{
-    for (NSUInteger spacesIndex = 0;
-         spacesIndex < paramNumberOfSpaces;
-         ++paramNumberOfSpaces)
-    {
-        [self addObject:@(NO)];
-    }
-}
-
-@end
-
 
 @interface CWYCelullarMatrix ()
 
-@property (nonatomic, strong) NSMutableArray *nextMatrix;
+@property (nonatomic, assign) BOOL *currentMatrix;
+
 @property (nonatomic, assign) CGSize size;
 
 - (NSUInteger)numberOfNeighboursForIndex:(NSUInteger)paramIndex;
@@ -49,9 +30,8 @@
     
     if (self)
     {
-        _currentMatrix = [NSMutableArray array];
-        [_currentMatrix addEmptySpaces:paramHeight * paramWidth];
-        
+        _currentMatrix = calloc(paramWidth * paramHeight, sizeof(BOOL));
+        _currentMatrix[319] = YES;
         _size = CGSizeMake(paramWidth, paramHeight);
     }
     
@@ -78,43 +58,43 @@
     
     if (!topEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x
-                                                       pointY:point.y-1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x
+                                                       pointY:point.y-1]];
     }
     if (!rightEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x+1
-                                                       pointY:point.y]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+                                                       pointY:point.y]];
     }
     if (!bottomEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x
-                                                       pointY:point.y+1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x
+                                                       pointY:point.y+1]];
     }
     if (!leftEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x-1
-                                                       pointY:point.y]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+                                                       pointY:point.y]];
     }
     if (!topEdge && !leftEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x-1
-                                                       pointY:point.y-1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+                                                       pointY:point.y-1]];
     }
     if (!topEdge && !rightEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x+1
-                                                       pointY:point.y-1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+                                                       pointY:point.y-1]];
     }
     if (!bottomEdge && !rightEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x+1
-                                                       pointY:point.y+1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x+1
+                                                       pointY:point.y+1]];
     }
     if (!bottomEdge && !leftEdge)
     {
-        sum = [self.currentMatrix[[self vectorIndexFromPointX:point.x-1
-                                                       pointY:point.y+1]] boolValue];
+        sum = self.currentMatrix[[self vectorIndexFromPointX:point.x-1
+                                                       pointY:point.y+1]];
         
     }
 
@@ -124,7 +104,7 @@
 
 - (void)nextGeneration
 {
-    NSMutableArray *nextMatrix = [NSMutableArray array];
+    BOOL *nextMatrix = calloc(self.size.width * self.size.height, sizeof(BOOL));
     
     for (NSUInteger traverseIndex = 0;
          traverseIndex < self.size.width * self.size.height;
@@ -133,20 +113,22 @@
         if ([self numberOfNeighboursForIndex:traverseIndex] < 2 ||
             [self numberOfNeighboursForIndex:traverseIndex] > 3)
         {
-            nextMatrix[traverseIndex] = @(NO);
+            nextMatrix[traverseIndex] = NO;
         }
-        else if ([self.currentMatrix[traverseIndex] boolValue] &&
+        else if (self.currentMatrix[traverseIndex] &&
                  ([self numberOfNeighboursForIndex:traverseIndex] == 2 ||
                  [self numberOfNeighboursForIndex:traverseIndex] == 3))
         {
-            nextMatrix[traverseIndex] = @(YES);
+            nextMatrix[traverseIndex] = YES;
         }
-        else if (![self.currentMatrix[traverseIndex] boolValue] &&
+        else if (!self.currentMatrix[traverseIndex] &&
                  [self numberOfNeighboursForIndex:traverseIndex] == 3)
         {
-            nextMatrix[traverseIndex] = @(YES);
+            nextMatrix[traverseIndex] = YES;
         }
     }
+    
+    free(self.currentMatrix);
     
     self.currentMatrix = nextMatrix;
 }
@@ -162,10 +144,10 @@
 
 - (CGPoint)pointFromVectorIndex:(NSUInteger)paramIndex
 {
-    NSUInteger row = paramIndex / (NSUInteger)self.size.width;
-    NSUInteger column = paramIndex - self.size.width * row;
+    NSInteger row = (NSUInteger)paramIndex / (NSUInteger)self.size.width;
+    NSInteger column = paramIndex - (self.size.width * row);
     
-    return CGPointMake(row, column);
+    return CGPointMake(column, row);
 }
 
 

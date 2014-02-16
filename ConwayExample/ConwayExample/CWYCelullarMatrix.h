@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface CWYCelullarMatrix : NSObject
-
-@property (nonatomic, strong) NSMutableArray *currentMatrix;
+@property (nonatomic, assign, readonly) BOOL *currentMatrix;
+@property (nonatomic, assign, readonly) CGSize size;
 
 - (id)initWithWidth:(NSUInteger)paramWidth
             height:(NSUInteger)paramHeight;
 
 
 - (void)nextGeneration;
+
+- (CGPoint)pointFromVectorIndex:(NSUInteger)paramIndex;
 
 @end
