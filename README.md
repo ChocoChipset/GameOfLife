@@ -24,7 +24,7 @@ Implementation Notes
 --------------------
 
 * The cellular automata is contained in the class ```CWYCelullarMatrix```.
-* Since only two states are required (living / dead) it is represented as an array of ```BOOL`` values. 
+* Since only two states are required (living / dead) it is represented as an array of ```BOOL``` values. 
 * Animations are handled by the view controller and done with transitions of CALayer objects.
 
 
