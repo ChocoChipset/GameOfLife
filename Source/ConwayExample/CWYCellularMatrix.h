@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CWYCelullarMatrix : NSObject
+@interface CWYCellularMatrix : NSObject
 
 @property (nonatomic, assign) BOOL *currentMatrix;
 @property (nonatomic, assign, readonly) CGSize size;

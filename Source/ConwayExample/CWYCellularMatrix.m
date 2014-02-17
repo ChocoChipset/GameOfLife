@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Hector Zarate. All rights reserved.
 //
 
-#import "CWYCelullarMatrix.h"
+#import "CWYCellularMatrix.h"
 
 
-@interface CWYCelullarMatrix ()
+@interface CWYCellularMatrix ()
 
 
 @property (nonatomic, assign) CGSize size;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation CWYCelullarMatrix
+@implementation CWYCellularMatrix
 
 #pragma mark - Initializer
 

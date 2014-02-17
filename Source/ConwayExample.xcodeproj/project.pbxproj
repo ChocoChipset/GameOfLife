@@ -21,7 +21,7 @@
 		3A35D40418B01556009BA485 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A35D3E618B01556009BA485 /* UIKit.framework */; };
 		3A35D40C18B01556009BA485 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A35D40A18B01556009BA485 /* InfoPlist.strings */; };
 		3A35D40E18B01556009BA485 /* ConwayExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A35D40D18B01556009BA485 /* ConwayExampleTests.m */; };
-		3A35D41918B017BA009BA485 /* CWYCelullarMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A35D41818B017BA009BA485 /* CWYCelullarMatrix.m */; };
+		3A35D41918B017BA009BA485 /* CWYCellularMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A35D41818B017BA009BA485 /* CWYCellularMatrix.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		3A35D40918B01556009BA485 /* ConwayExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ConwayExampleTests-Info.plist"; sourceTree = "<group>"; };
 		3A35D40B18B01556009BA485 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A35D40D18B01556009BA485 /* ConwayExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConwayExampleTests.m; sourceTree = "<group>"; };
-		3A35D41718B017BA009BA485 /* CWYCelullarMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWYCelullarMatrix.h; sourceTree = "<group>"; };
-		3A35D41818B017BA009BA485 /* CWYCelullarMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWYCelullarMatrix.m; sourceTree = "<group>"; };
+		3A35D41718B017BA009BA485 /* CWYCellularMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWYCellularMatrix.h; sourceTree = "<group>"; };
+		3A35D41818B017BA009BA485 /* CWYCellularMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWYCellularMatrix.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +122,8 @@
 				3A35D3F818B01556009BA485 /* CWYViewController.m */,
 				3A35D3FA18B01556009BA485 /* Images.xcassets */,
 				3A35D3E918B01556009BA485 /* Supporting Files */,
-				3A35D41718B017BA009BA485 /* CWYCelullarMatrix.h */,
-				3A35D41818B017BA009BA485 /* CWYCelullarMatrix.m */,
+				3A35D41718B017BA009BA485 /* CWYCellularMatrix.h */,
+				3A35D41818B017BA009BA485 /* CWYCellularMatrix.m */,
 			);
 			path = ConwayExample;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 			files = (
 				3A35D3F318B01556009BA485 /* CWYAppDelegate.m in Sources */,
 				3A35D3EF18B01556009BA485 /* main.m in Sources */,
-				3A35D41918B017BA009BA485 /* CWYCelullarMatrix.m in Sources */,
+				3A35D41918B017BA009BA485 /* CWYCellularMatrix.m in Sources */,
 				3A35D3F918B01556009BA485 /* CWYViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +467,7 @@
 				3A35D41318B01556009BA485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A35D41418B01556009BA485 /* Build configuration list for PBXNativeTarget "ConwayExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +476,7 @@
 				3A35D41618B01556009BA485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

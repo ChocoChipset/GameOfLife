@@ -8,7 +8,7 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 #import "CWYViewController.h"
-#import "CWYCelullarMatrix.h"
+#import "CWYCellularMatrix.h"
 
 const NSUInteger CWYGridFactor = 8;
 const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
@@ -19,7 +19,7 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
 @property (nonatomic, weak) NSTimer *animationTimer;
 
 @property (nonatomic, strong) IBOutlet UIView *cellularView;
-@property (nonatomic, strong) CWYCelullarMatrix *cellularMatrix;
+@property (nonatomic, strong) CWYCellularMatrix *cellularMatrix;
 
 -(IBAction)handleAnimationButtonPress:(id)sender;
 
@@ -37,7 +37,7 @@ const NSTimeInterval CWYAnimationTimeInterval = 0.75; // [s]
     tapGestureRecognizer.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-    self.cellularMatrix = [[CWYCelullarMatrix alloc] initWithWidth:(self.cellularView.bounds.size.width / CWYGridFactor) + 1
+    self.cellularMatrix = [[CWYCellularMatrix alloc] initWithWidth:(self.cellularView.bounds.size.width / CWYGridFactor) + 1
                                                             height:(self.cellularView.bounds.size.height / CWYGridFactor) + 1];
     
     
