@@ -2,14 +2,14 @@ Game of Life for iOS
 ====================
 
 
+![Animation](https://raw.github.com/iOSCowboy/GameOfLife/master/Images/Example.gif?token=612990__eyJzY29wZSI6IlJhd0Jsb2I6aU9TQ293Ym95L0dhbWVPZkxpZmUvbWFzdGVyL0ltYWdlcy9FeGFtcGxlLmdpZiIsImV4cGlyZXMiOjEzOTMyNDkwMTB9--a61de5ef0c1378ec78ae0207d34eee65122e3a5e)
 
+Game of Life is a popular cellular automaton proposed by John Conway during the funky 70s. 
 
-The Game of Life is a popular cellular automaton proposed by John Conway during the funky 70s. 
-
-**Cellular automaton** is a fancy term for a grid[1] of *cells* with a finite number of states. 
+**Cellular automaton** is a fancy term for a grid* of *cells* with a finite number of states. 
 The system has an initial state (input) and changes over time according to some fixed rules. These rules determine the new state of each cell in terms of its current state and the state of the cells surrounding it (called  *neighbours*).
 
-[1]: The grid can have any finite number of dimensions. 
+*a grid can have any finite number of dimensions. 
 
 
 Rules of Conway's Game of Life
@@ -22,6 +22,9 @@ Rules of Conway's Game of Life
 
 Implementation Notes
 --------------------
+
+* The cellular automata is contained in the class ```CWYCelullarMatrix```.
+* Since only two states are required (living / dead) it is represented as an array of ```BOOL`` values. 
 
 
 Contribution
